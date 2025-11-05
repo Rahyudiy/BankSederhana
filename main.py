@@ -1,8 +1,12 @@
 # main.py
 from controllers.bankController import BankController
 from views.menuView import MenuView
+from rich.console import Console
+from rich.panel import Panel
+
 
 def main():
+    console = Console()
     controller = BankController()
 
     # contoh akun awal
@@ -12,7 +16,9 @@ def main():
     #memilih memu
     while True:
         MenuView.lihatMenu()
-        pilihan = input("Pilih Menu: ").strip()
+
+        console.print(Panel.fit("[bold blue] Masukan menu pilihan anda"))    
+        pilihan = console.input("[bold blue]> Pilih Menu: ").strip()
 
         if pilihan == "1":
             acc_type = input("Tipe akun (biasa/premium): ").strip()
@@ -29,29 +35,29 @@ def main():
             controller.showAllAccounts()
 
         elif pilihan == "3":
-            acc_no = input("Masukkan nomor akun untuk setor: ").strip()
+            acc_no = console.input("[bold blue]Masukkan nomor akun untuk setor: ").strip()
             try:
                 jumlah = float(input("Jumlah setor: ").strip())
             except ValueError:
-                print("❌ Jumlah harus angka.")
+                console.print("[red italic] ❌ Jumlah harus angka.")
                 continue
             controller.deposit(acc_no, jumlah)
 
         elif pilihan == "4":
-            acc_no = input("Masukkan nomor akun untuk tarik: ").strip()
+            acc_no = console.input("[blue bold]Masukkan nomor akun untuk tarik: ").strip()
             try:
                 jumlah = float(input("Jumlah tarik: ").strip())
             except ValueError:
-                print("❌ Jumlah harus angka.")
+                console.print("[red italic]❌ Jumlah harus angka.")
                 continue
             controller.withdraw(acc_no, jumlah)
 
         elif pilihan == "5":
-            print("👋 Terima kasih. Program selesai.")
+            console.print("[green italic]👋 Terima kasih. Program selesai.")
             break
 
         else:
-            print("❌ Pilihan tidak valid. Coba lagi.")
+            console.print("[red italic]❌ Pilihan tidak valid. Coba lagi.")
 
 if __name__ == "__main__":
     main()

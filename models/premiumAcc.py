@@ -1,6 +1,5 @@
 from models.bankAcc import BankAccount
 
-
 class PremiumAccount(BankAccount):
     # Inheritance
     # mewarisi semua atribut dan method bankAccount
@@ -10,7 +9,6 @@ class PremiumAccount(BankAccount):
         if jumlah <= 0:
             print("❌ Jumlah penarikan tidak valid.")
             return
-        
         # Polymorphism akun premium bisa tarik saldo dengan tambahan limit sampai 50.000
         uang = self.getBalance()
         limitTambahan = 50000.0
