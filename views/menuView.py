@@ -20,5 +20,6 @@ class MenuView:
         table.add_row('3','Setor Uang')
         table.add_row('4','Tarik Uang')
         table.add_row('5','Keluar', style='red')
+        table.add_row('99','Hapus Akuyn')
 
         console.print(table)
